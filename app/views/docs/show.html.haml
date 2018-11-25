@@ -1,0 +1,6 @@
+%h1= @doc.title
+%p= @doc.content
+// @doc its not defined on the controller action "show", so, it will raise the next ERROR:
+// NoMethodError in Docs#show
+// Showing /home/miller/Documents/ruby/my8apps/cabinet/app/views/docs/show.html.haml where line #1 raised:
+// undefined method `title' for nil:NilClass
