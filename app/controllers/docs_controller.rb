@@ -28,9 +28,17 @@ class DocsController < ApplicationController
 	end
 
 	def update
+		if @doc.update(doc_params)
+			redirect_to @doc
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy
+		# we find the doc to be destroyed and redirect to all docs
+		@doc.destroy
+		redirect_to docs_path
 	end
 
 	private

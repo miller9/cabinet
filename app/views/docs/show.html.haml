@@ -4,3 +4,9 @@
 // NoMethodError in Docs#show
 // Showing /home/miller/Documents/ruby/my8apps/cabinet/app/views/docs/show.html.haml where line #1 raised:
 // undefined method `title' for nil:NilClass
+
+// Adding the links to the Update/Edit actions:
+= link_to "All Docs", docs_path
+= link_to "Fix Doc", edit_doc_path(@doc)
+// Adding a pop-up message verifying the deleting..
+= link_to "Trash It", doc_path(@doc), method: :delete, data: { confirm: "Are you sure to delete this doc?" }
