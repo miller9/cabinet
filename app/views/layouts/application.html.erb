@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- This is the template for the entire application -->
 <html>
   <head>
     <title>Cabinet</title>
@@ -9,7 +10,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+      <!-- DEVISE 3 - Adding both classes to use devise -->
+      <!--   3. Ensure you have flash messages in app/views/layouts/application.html.erb. For example: -->
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+
   <body>
+    <!-- All of the VIEW files are rendered here, with "yield" -->
     <%= yield %>
   </body>
 </html>
