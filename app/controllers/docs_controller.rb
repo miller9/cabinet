@@ -14,12 +14,16 @@ class DocsController < ApplicationController
 
 	def new
 		# creating the instance of a new document
-		@doc = Doc.new
+		# @doc = Doc.new
+		# Only current user can create the doc or the doc is being created from the user with docs built.
+		@doc = current_user.docs.build
 	end
 
 	def create
 		# When we create a document, we're creating its parameters (title and content)
-		@doc = Doc.new(doc_params)
+		# @doc = Doc.new(doc_params)
+		# Just the current user with respective params
+		@doc = current_user.docs.build(doc_params)
 		if @doc.save
 			redirect_to @doc
 		else
