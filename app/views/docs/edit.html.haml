@@ -1,0 +1,11 @@
+%h1 Fix Doc!
+
+// rendering the form in the _form.html.haml for @doc.
+// As @doc it doesnt exist on the controller actions, it will raise the next ERROR
+// NoMethodError in Docs#new
+// Showing /home/miller/Documents/ruby/my8apps/cabinet/app/views/docs/_form.html.haml where line #1 raised:
+// undefined method `model_name' for nil:NilClass
+= render 'form'
+
+// Link to takes us back to the doc_path
+= link_to "Cancel", doc_path

@@ -7,6 +7,8 @@
 
 // Adding the links to the Update/Edit actions:
 = link_to "All Docs", docs_path
+// it will raise an ERROR, it doesn't exist the "edit" action for DocsController. 
+// We need a View for it... = edit.html.haml
 = link_to "Fix Doc", edit_doc_path(@doc)
 // Adding a pop-up message verifying the deleting..
 = link_to "Trash It", doc_path(@doc), method: :delete, data: { confirm: "Are you sure to delete this doc?" }
