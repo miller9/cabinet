@@ -1,6 +1,12 @@
 class DocsController < ApplicationController
 
+	# params are going to be used on: show, edit, update, destroy
+	before_action :find_doc, only: [:show, :edit, :update, :destroy]
+
+
 	def index
+		# defining @docs, order in Descending order
+		@docs = Doc.all.order("created_at DESC")
 	end
 
 	def show
@@ -28,7 +34,10 @@ class DocsController < ApplicationController
 	end
 
 	private
+		# params are going to be used on: show, edit, update, destroy
 		def find_doc
+			# Find by the parameters Id
+			@doc = Doc.find(params[:id])
 		end
 
 		def doc_params
