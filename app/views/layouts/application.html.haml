@@ -2,9 +2,9 @@
 %html
 %head
   %title FileCabinet | Your life's work!
-  / = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  //= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-  / = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  //= javascript_include_tag 'application', 'data-turbolinks-track' => true
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload' 
   = csrf_meta_tags
 %body
@@ -21,7 +21,7 @@
           = link_to "Log In", new_user_session_path
 
   %p.notice= notice
-  %p.notice= alert
+  %p.alert= alert
 
   = yield
 
