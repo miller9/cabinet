@@ -5,8 +5,10 @@ class DocsController < ApplicationController
 
 
 	def index
-		# defining @docs, order in Descending order
-		@docs = Doc.all.order("created_at DESC")
+		# defining @docs, Shows All of the DOCS. ordered in Descending order
+		# @docs = Doc.all.order("created_at DESC")
+		# Just the current user can see its own docs
+		@docs = Doc.where(user_id: current_user)
 	end
 
 	def show
