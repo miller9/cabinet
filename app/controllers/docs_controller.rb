@@ -5,8 +5,10 @@ class DocsController < ApplicationController
 
 
 	def index
-		# defining @docs, order in Descending order
-		@docs = Doc.all.order("created_at DESC")
+		# defining @docs, Shows All of the DOCS. ordered in Descending order
+		# @docs = Doc.all.order("created_at DESC")
+		# Just the current user can see its own docs
+		@docs = Doc.where(user_id: current_user)
 	end
 
 	def show
@@ -14,12 +16,16 @@ class DocsController < ApplicationController
 
 	def new
 		# creating the instance of a new document
-		@doc = Doc.new
+		# @doc = Doc.new
+		# Only current user can create the doc or the doc is being created from the user with docs built.
+		@doc = current_user.docs.build
 	end
 
 	def create
 		# When we create a document, we're creating its parameters (title and content)
-		@doc = Doc.new(doc_params)
+		# @doc = Doc.new(doc_params)
+		# Just the current user with respective params
+		@doc = current_user.docs.build(doc_params)
 		if @doc.save
 			redirect_to @doc
 		else
@@ -28,9 +34,17 @@ class DocsController < ApplicationController
 	end
 
 	def update
+		if @doc.update(doc_params)
+			redirect_to @doc
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy
+		# we find the doc to be destroyed and redirect to all docs
+		@doc.destroy
+		redirect_to docs_path
 	end
 
 	private

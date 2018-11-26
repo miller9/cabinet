@@ -1,9 +1,18 @@
-- @docs.each do |doc|
-   // creates a link to the whole content of the document
-   %h2= link_to doc.title, doc
-   // shows the time when it was created
-   %p= time_ago_in_words(doc.created_at)
-   // just show the firts 50 content characters
-   %p= truncate(doc.content, length:50)
-   // @docs doesn't exist on the controller action "index", so it will raise the ERROR:
-   // 
+/ - @docs.each do |doc|
+/    %h2= link_to doc.title, doc
+/    %p= time_ago_in_words(doc.created_at)
+/    %p= truncate(doc.content, length:50)
+
+.wrapper_with_padding
+  #docs.clearfix
+    - unless @docs.blank?
+      - @docs.each do |doc|
+        %a{ href: (url_for [doc])}
+          .doc
+            %p.title= doc.title
+            %p.date= time_ago_in_words(doc.created_at)
+            %p.content= truncate(doc.content, length:50)
+    - else 
+      %h2 Create Doc!
+      %p Start Creating Documents and Organizing your Life!
+      %button= link_to "Create Doc", new_doc_path

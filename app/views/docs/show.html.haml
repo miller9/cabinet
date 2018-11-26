@@ -1,6 +1,26 @@
-%h1= @doc.title
-%p= @doc.content
-// @doc its not defined on the controller action "show", so, it will raise the next ERROR:
-// NoMethodError in Docs#show
-// Showing /home/miller/Documents/ruby/my8apps/cabinet/app/views/docs/show.html.haml where line #1 raised:
-// undefined method `title' for nil:NilClass
+// Fixing format problem, style and button.
+.wrapper_with_padding
+  #doc_show
+    %h1.title= @doc.title
+    %p= simple_format(@doc.content)
+
+    .buttons
+      = link_to "Go Back", docs_path, class: "button"
+      = link_to "Fix Doc", edit_doc_path(@doc), class: "button"
+      = link_to "Trash It", doc_path(@doc), method: :delete, data: { confirm: "Are you sure to delete this doc?" }, class: "button"
+
+
+/ %h1= @doc.title
+/ %p= @doc.content
+/ // @doc its not defined on the controller action "show", so, it will raise the next ERROR:
+/ // NoMethodError in Docs#show
+/ // Showing /home/miller/Documents/ruby/my8apps/cabinet/app/views/docs/show.html.haml where line #1 raised:
+/ // undefined method `title' for nil:NilClass
+
+/ // Adding the links to the Update/Edit actions:
+/ = link_to "All Docs", docs_path
+/ // it will raise an ERROR, it doesn't exist the "edit" action for DocsController. 
+/ // We need a View for it... = edit.html.haml
+/ = link_to "Fix Doc", edit_doc_path(@doc)
+/ // Adding a pop-up message verifying the deleting..
+/ = link_to "Trash It", doc_path(@doc), method: :delete, data: { confirm: "Are you sure to delete this doc?" }
